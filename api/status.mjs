@@ -8,6 +8,10 @@ export default function handler(_request, response) {
   response.status(200).json({
     generatedAt: data.generatedAt,
     sourcePolicy: data.sourcePolicy,
+    importPolicy: {
+      readOnly: true,
+      message: "הייבוא בפרודקשן הוא לקריאה בלבד. להרצת ייבוא: npm run import מקומית ואז commit/push של data/matches.json."
+    },
     importStatus: data.importStatus,
     totals: season.totals
   });

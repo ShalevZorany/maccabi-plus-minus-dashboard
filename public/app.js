@@ -21,6 +21,9 @@ const tabs = [...document.querySelectorAll(".tab")];
 const qualityPanel = document.querySelector("#qualityPanel");
 const heroMetric = document.querySelector("#heroMetric");
 const heroSubMetric = document.querySelector("#heroSubMetric");
+const refreshButton = document.querySelector("#refreshData");
+const manualFileInput = document.querySelector("#manualFile");
+const manualImportLabel = manualFileInput.closest("label");
 const playerSortColumns = {
   minutes: "דקות",
   appearances: "משחקים",
@@ -29,8 +32,8 @@ const playerSortColumns = {
   plusMinus: "פלוס/מינוס"
 };
 
-document.querySelector("#refreshData").addEventListener("click", refreshData);
-document.querySelector("#manualFile").addEventListener("change", importManualFile);
+refreshButton.addEventListener("click", refreshData);
+manualFileInput.addEventListener("change", importManualFile);
 view.addEventListener("click", handleViewClick);
 
 for (const [key, selector] of [
@@ -54,14 +57,32 @@ applyRoute();
 async function loadDashboard() {
   view.innerHTML = "<div class=\"empty-state\"><h2>טוען נתונים...</h2></div>";
   state.dashboard = await fetchJson("/api/dashboard");
+  configureImportControls();
   updateHero();
   renderQualityStrip();
 }
 
+function configureImportControls() {
+  const importPolicy = state.dashboard?.importPolicy || {};
+  const readOnly = importPolicy.readOnly === true;
+  const message = importPolicy.message || "ייבוא בפרודקשן זמין רק מקומית עם npm run import.";
+
+  refreshButton.disabled = readOnly;
+  manualFileInput.disabled = readOnly;
+
+  refreshButton.textContent = readOnly ? "ייבוא חסום בפרודקשן" : "רענון נתונים מאתר מכבי";
+  refreshButton.title = readOnly ? message : "";
+  manualImportLabel.title = readOnly ? message : "";
+}
+
 async function refreshData() {
-  const button = document.querySelector("#refreshData");
-  button.disabled = true;
-  button.textContent = "מרענן...";
+  if (state.dashboard?.importPolicy?.readOnly) {
+    alert(state.dashboard.importPolicy.message || "ייבוא חסום בפרודקשן.");
+    return;
+  }
+
+  refreshButton.disabled = true;
+  refreshButton.textContent = "מרענן...";
   try {
     await fetchJson("/api/import/refresh", { method: "POST" });
     await loadDashboard();
@@ -69,12 +90,18 @@ async function refreshData() {
   } catch (error) {
     alert(`ייבוא נכשל: ${error.message}`);
   } finally {
-    button.disabled = false;
-    button.textContent = "רענון נתונים מאתר מכבי";
+    refreshButton.disabled = false;
+    refreshButton.textContent = "רענון נתונים מאתר מכבי";
   }
 }
 
 async function importManualFile(event) {
+  if (state.dashboard?.importPolicy?.readOnly) {
+    alert(state.dashboard.importPolicy.message || "ייבוא ידני חסום בפרודקשן.");
+    event.target.value = "";
+    return;
+  }
+
   const file = event.target.files?.[0];
   if (!file) return;
   const text = await file.text();
@@ -121,12 +148,17 @@ function renderQualityStrip() {
   const incomplete = (dashboard?.matches || []).filter((match) => match.status === "finished" && !match.completeForCalculation);
   const source = dashboard?.sourcePolicy?.primary || "לא הוגדר מקור";
   const lastRun = dashboard?.importStatus?.lastRunAt ? formatDateTime(dashboard.importStatus.lastRunAt) : "לא בוצע ייבוא";
+  const importPolicy = dashboard?.importPolicy || {};
+  const mode = importPolicy.readOnly ? "קריאה בלבד (פרודקשן)" : "ייבוא זמין (לוקאל)";
+  const modeMessage = importPolicy.readOnly ? `<br><strong>מדיניות ייבוא:</strong> ${escapeHtml(importPolicy.message || "")}` : "";
 
   qualityPanel.innerHTML = `
     <div class="notice ${incomplete.length || warnings.length ? "notice--warn" : "notice--ok"}">
       <strong>מקור נתונים:</strong> ${escapeHtml(source)} ·
       <strong>ייבוא אחרון:</strong> ${escapeHtml(lastRun)} ·
+      <strong>מצב ייבוא:</strong> ${escapeHtml(mode)} ·
       <strong>משחקים לא כשירים:</strong> ${incomplete.length}
+      ${modeMessage}
     </div>
   `;
 }
@@ -321,6 +353,7 @@ function renderPlayer(playerId) {
 
 function renderQuality() {
   const matches = filteredMatches();
+  const importPolicy = state.dashboard.importPolicy || {};
   view.innerHTML = `
     <section class="panel">
       <div class="panel__head">
@@ -332,6 +365,11 @@ function renderQuality() {
           <h4>מדיניות מקור</h4>
           <p>${escapeHtml(state.dashboard.sourcePolicy?.primary || "")}</p>
           <ul class="list">${(state.dashboard.sourcePolicy?.notes || []).map((note) => `<li>${escapeHtml(note)}</li>`).join("")}</ul>
+        </div>
+        <div class="mini-card">
+          <h4>מדיניות ייבוא</h4>
+          <p>${importPolicy.readOnly ? "קריאה בלבד (פרודקשן)" : "ייבוא זמין (לוקאל)"}</p>
+          ${importPolicy.message ? `<p>${escapeHtml(importPolicy.message)}</p>` : ""}
         </div>
         ${matches.map((match) => `
           <div class="mini-card">

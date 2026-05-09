@@ -1,9 +1,8 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { calculateSeason } from "../src/calculate.mjs";
+import { getRuntimeData } from "./_runtime-data.mjs";
 
-export default function handler(_request, response) {
-  const data = JSON.parse(readFileSync(resolve(process.cwd(), "data", "matches.json"), "utf8"));
+export default async function handler(_request, response) {
+  const { data } = await getRuntimeData();
   const season = calculateSeason(data.matches);
   response.status(200).json(season.matches.map(({ playerStats, ...match }) => match));
 }

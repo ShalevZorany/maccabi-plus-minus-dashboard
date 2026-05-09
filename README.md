@@ -2,7 +2,7 @@
 
 דאשבורד למדד פלוס/מינוס של שחקני מכבי תל אביב בליגת העל בעונת `2025/2026`.
 
-במקומי אפשר לייבא ולרענן נתונים. בפריסה ל-Vercel האתר עובד כסנאפשוט קריא של `data/matches.json`, כי מערכת הקבצים של Vercel Functions אינה אחסון קבוע לכתיבה.
+במקומי אפשר לייבא ולרענן נתונים ידנית. בפריסה ל-Vercel הדאשבורד מריץ ייבוא אוטומטי ממקור מכבי בכל טעינה; אם המקור זמנית לא נגיש מוצג סנאפשוט fallback מתוך `data/matches.json`.
 
 ## הרצה
 
@@ -38,9 +38,10 @@ https://www.maccabi-tlv.co.il/en/result-fixtures/first-team/fixtures/
 - משחקים עתידיים/לא משוחקים נשמרים אבל אינם נכנסים לחישוב.
 - משחק שהסתיים אבל חסר בו הרכב, שערים או חילופי מכבי מלאים יסומן כלא כשיר ולא ייכנס למדד.
 - אין השלמת נתונים ידנית שקטה. אם אין מקור ברור, הנתון נשאר חסר ומוצג בדאשבורד.
-- ב-Vercel רענון/ייבוא דרך UI נעול כ-read-only עם הודעה מובנית. עדכון נתונים לפרודקשן נעשה מקומית ואז ב-commit של `data/matches.json`.
+- ב-Vercel אין ייבוא ידני מה-UI: עדכון הנתונים אוטומטי בכל טעינת דאשבורד.
+- אם מקור מכבי לא זמין זמנית, ה-API חוזר לסנאפשוט האחרון (`data/matches.json`) ומוסיף אזהרת fallback.
 
-## ייבוא ידני
+## ייבוא ידני (לוקאל בלבד)
 
 אפשר לייבא דרך הדאשבורד קובץ JSON או CSV. דוגמאות נמצאות ב:
 
@@ -81,7 +82,7 @@ src/validation.mjs            בדיקות שלמות ואיכות נתונים
 src/importers/maccabi-importer.mjs
 src/importers/manual-importer.mjs
 src/server.mjs                Local Node API + static frontend
-api/                          Vercel read-only API handlers
+api/                          Vercel auto-refresh API handlers
 public/                       Vanilla dashboard
 data/matches.json             אחסון מקומי
 ```

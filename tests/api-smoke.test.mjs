@@ -20,5 +20,6 @@ test("API exposes dashboard status", async (t) => {
   assert.equal(response.status, 200);
   const json = await response.json();
   assert.equal(json.totals.matches, 0);
-  assert.equal(json.importPolicy.readOnly, false);
+  assert.equal(json.importPolicy.autoRefresh, false);
+  assert.equal(json.importPolicy.manualImportEnabled, true);
 });

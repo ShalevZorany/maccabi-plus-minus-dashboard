@@ -41,7 +41,7 @@ export function createApp() {
         return sendJson(response, 200, {
           generatedAt: data.generatedAt,
           sourcePolicy: data.sourcePolicy,
-          importPolicy: getImportPolicy("local"),
+          importPolicy: getImportPolicy(),
           importStatus: data.importStatus,
           totals: season.totals
         });
@@ -53,7 +53,7 @@ export function createApp() {
         return sendJson(response, 200, {
           generatedAt: data.generatedAt,
           sourcePolicy: data.sourcePolicy,
-          importPolicy: getImportPolicy("local"),
+          importPolicy: getImportPolicy(),
           importStatus: data.importStatus,
           totals: season.totals,
           players: season.players,
@@ -195,17 +195,12 @@ function stripHeavyPlayerStats(match) {
   return rest;
 }
 
-function getImportPolicy(runtime) {
-  if (runtime === "vercel") {
-    return {
-      readOnly: true,
-      message: "הייבוא בפרודקשן הוא לקריאה בלבד. להרצת ייבוא: npm run import מקומית ואז commit/push של data/matches.json."
-    };
-  }
-
+function getImportPolicy() {
   return {
-    readOnly: false,
-    message: ""
+    mode: "local-snapshot",
+    autoRefresh: false,
+    manualImportEnabled: true,
+    message: "בסביבה מקומית אפשר לרענן ידנית או לייבא קובץ JSON/CSV."
   };
 }
 

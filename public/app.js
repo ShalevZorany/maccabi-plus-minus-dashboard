@@ -64,20 +64,26 @@ async function loadDashboard() {
 
 function configureImportControls() {
   const importPolicy = state.dashboard?.importPolicy || {};
-  const readOnly = importPolicy.readOnly === true;
-  const message = importPolicy.message || "ייבוא בפרודקשן זמין רק מקומית עם npm run import.";
+  const autoRefresh = importPolicy.autoRefresh === true;
+  const manualImportEnabled = importPolicy.manualImportEnabled !== false;
+  const message = importPolicy.message || "";
+  const showActions = !autoRefresh || manualImportEnabled;
 
-  refreshButton.disabled = readOnly;
-  manualFileInput.disabled = readOnly;
+  refreshButton.disabled = !manualImportEnabled;
+  manualFileInput.disabled = !manualImportEnabled;
+  manualImportLabel.style.display = manualImportEnabled ? "" : "none";
+  refreshButton.style.display = manualImportEnabled ? "" : "none";
+  const heroActions = document.querySelector(".hero__actions");
+  heroActions.style.display = showActions ? "" : "none";
 
-  refreshButton.textContent = readOnly ? "ייבוא חסום בפרודקשן" : "רענון נתונים מאתר מכבי";
-  refreshButton.title = readOnly ? message : "";
-  manualImportLabel.title = readOnly ? message : "";
+  refreshButton.textContent = autoRefresh ? "עדכון אוטומטי פעיל" : "רענון נתונים מאתר מכבי";
+  refreshButton.title = message;
+  manualImportLabel.title = message;
 }
 
 async function refreshData() {
-  if (state.dashboard?.importPolicy?.readOnly) {
-    alert(state.dashboard.importPolicy.message || "ייבוא חסום בפרודקשן.");
+  if (state.dashboard?.importPolicy?.manualImportEnabled === false) {
+    alert(state.dashboard.importPolicy.message || "עדכון אוטומטי כבר פעיל.");
     return;
   }
 
@@ -96,8 +102,8 @@ async function refreshData() {
 }
 
 async function importManualFile(event) {
-  if (state.dashboard?.importPolicy?.readOnly) {
-    alert(state.dashboard.importPolicy.message || "ייבוא ידני חסום בפרודקשן.");
+  if (state.dashboard?.importPolicy?.manualImportEnabled === false) {
+    alert(state.dashboard.importPolicy.message || "ייבוא ידני כבוי במצב עדכון אוטומטי.");
     event.target.value = "";
     return;
   }
@@ -135,7 +141,7 @@ function updateHero() {
   const totals = state.dashboard?.totals;
   if (!totals?.matches) {
     heroMetric.textContent = "אין נתונים";
-    heroSubMetric.textContent = "צריך להריץ ייבוא";
+    heroSubMetric.textContent = state.dashboard?.importPolicy?.message || "לא התקבלו נתונים כרגע";
     return;
   }
   heroMetric.textContent = `${totals.complete}/${totals.finished}`;
@@ -149,8 +155,8 @@ function renderQualityStrip() {
   const source = dashboard?.sourcePolicy?.primary || "לא הוגדר מקור";
   const lastRun = dashboard?.importStatus?.lastRunAt ? formatDateTime(dashboard.importStatus.lastRunAt) : "לא בוצע ייבוא";
   const importPolicy = dashboard?.importPolicy || {};
-  const mode = importPolicy.readOnly ? "קריאה בלבד (פרודקשן)" : "ייבוא זמין (לוקאל)";
-  const modeMessage = importPolicy.readOnly ? `<br><strong>מדיניות ייבוא:</strong> ${escapeHtml(importPolicy.message || "")}` : "";
+  const mode = importPolicy.autoRefresh ? "אוטומטי בכל טעינה" : "ייבוא ידני";
+  const modeMessage = importPolicy.message ? `<br><strong>מדיניות ייבוא:</strong> ${escapeHtml(importPolicy.message)}` : "";
 
   qualityPanel.innerHTML = `
     <div class="notice ${incomplete.length || warnings.length ? "notice--warn" : "notice--ok"}">
@@ -368,7 +374,7 @@ function renderQuality() {
         </div>
         <div class="mini-card">
           <h4>מדיניות ייבוא</h4>
-          <p>${importPolicy.readOnly ? "קריאה בלבד (פרודקשן)" : "ייבוא זמין (לוקאל)"}</p>
+          <p>${importPolicy.autoRefresh ? "אוטומטי בכל טעינה" : "ייבוא ידני"}</p>
           ${importPolicy.message ? `<p>${escapeHtml(importPolicy.message)}</p>` : ""}
         </div>
         ${matches.map((match) => `

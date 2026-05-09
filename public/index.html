@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#034ea2">
+    <meta name="application-name" content="maccabicheck">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="maccabicheck">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>maccabicheck</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/svg+xml" href="/icons/maccabicheck-icon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/maccabicheck-apple-touch-icon.png">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="project-name">maccabicheck · מקומי בלבד</p>
+        <h1>מדד פלוס/מינוס למכבי תל אביב</h1>
+        <p class="hero__text">
+          דאשבורד שמחשב מי היה על הדשא בכל שער של מכבי או נגדה, על בסיס הרכבים,
+          חילופים ודקות שערים ממקור מתועד.
+        </p>
+        <div class="hero__actions">
+          <button id="refreshData" class="button button--primary">רענון נתונים מאתר מכבי</button>
+          <label class="button button--ghost">
+            ייבוא JSON/CSV ידני
+            <input id="manualFile" type="file" accept=".json,.csv,application/json,text/csv">
+          </label>
+        </div>
+      </div>
+      <div class="score-card">
+        <span class="score-card__label">סטטוס חישוב</span>
+        <strong id="heroMetric">אין נתונים</strong>
+        <span id="heroSubMetric">צריך להריץ ייבוא</span>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section id="qualityPanel" class="quality-panel"></section>
+
+      <nav class="tabs" aria-label="ניווט דאשבורד">
+        <a href="#players" data-route="players" class="tab is-active">שחקנים</a>
+        <a href="#matches" data-route="matches" class="tab">משחקים</a>
+        <a href="#quality" data-route="quality" class="tab">איכות נתונים</a>
+      </nav>
+
+      <section class="filters" aria-label="סינונים">
+        <label>
+          שחקן
+          <input id="playerFilter" type="search" placeholder="חיפוש שחקן">
+        </label>
+        <label>
+          יריבה
+          <input id="opponentFilter" type="search" placeholder="חיפוש יריבה">
+        </label>
+        <label>
+          בית/חוץ
+          <select id="homeAwayFilter">
+            <option value="">הכל</option>
+            <option value="home">בית</option>
+            <option value="away">חוץ</option>
+          </select>
+        </label>
+        <label>
+          מתאריך
+          <input id="fromDateFilter" type="date">
+        </label>
+        <label>
+          עד תאריך
+          <input id="toDateFilter" type="date">
+        </label>
+        <label>
+          סוג הופעה
+          <select id="roleFilter">
+            <option value="">הכל</option>
+            <option value="starter">שחקני הרכב</option>
+            <option value="substitute">מחליפים</option>
+          </select>
+        </label>
+      </section>
+
+      <section id="view" class="view" aria-live="polite"></section>
+    </main>
+
+    <template id="emptyStateTemplate">
+      <div class="empty-state">
+        <h2>אין עדיין נתונים מחושבים</h2>
+        <p>אפשר להריץ <code>npm run import</code> או ללחוץ על רענון נתונים מהדאשבורד.</p>
+      </div>
+    </template>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

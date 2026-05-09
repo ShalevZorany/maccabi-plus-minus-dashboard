@@ -1,0 +1,70 @@
+{
+  "matches": [
+    {
+      "id": "manual-example",
+      "season": "2025/2026",
+      "competition": "Israeli Premier League",
+      "round": 1,
+      "date": "2025-09-16",
+      "time": "19:30",
+      "stadium": "HaMoshava",
+      "status": "finished",
+      "homeAway": "away",
+      "homeTeam": "Hapoel Petach Tikva",
+      "awayTeam": "Maccabi Tel Aviv",
+      "opponent": "Hapoel Petach Tikva",
+      "homeGoals": 0,
+      "awayGoals": 4,
+      "maccabiGoals": 4,
+      "opponentGoals": 0,
+      "result": "4-0",
+      "duration": { "minute": "90" },
+      "minutePrecision": "manual",
+      "lineups": {
+        "maccabi": {
+          "starters": [
+            { "number": 90, "name": "Roi Mishpati" },
+            { "number": 4, "name": "Heitor" },
+            { "number": 11, "name": "Sagiv Jehezkel" },
+            { "number": 5, "name": "Mohamed Ali Camara" },
+            { "number": 14, "name": "Denny Gropper" },
+            { "number": 6, "name": "Tyrese Asante" },
+            { "number": 42, "name": "Dor Peretz" },
+            { "number": 17, "name": "Kristijan Belic" },
+            { "number": 28, "name": "Issouf Sissokho" },
+            { "number": 19, "name": "Elad Madmon" },
+            { "number": 77, "name": "Osher Davida" }
+          ],
+          "substitutes": [
+            { "number": 36, "name": "Ido Shahar" },
+            { "number": 30, "name": "Itamar Noy" }
+          ]
+        },
+        "opponent": { "starters": [], "substitutes": [] }
+      },
+      "goals": [
+        { "minute": "19", "sortOrder": 10, "team": "maccabi", "scorer": "Osher Davida" },
+        { "minute": "57", "sortOrder": 20, "team": "maccabi", "scorer": "Dor Peretz" },
+        { "minute": "83", "sortOrder": 30, "team": "maccabi", "scorer": "Dor Peretz" },
+        { "minute": "89", "sortOrder": 40, "team": "maccabi", "scorer": "Ido Shahar" }
+      ],
+      "substitutions": [
+        {
+          "minute": "82",
+          "sortOrder": 25,
+          "team": "maccabi",
+          "playerIn": { "name": "Ido Shahar" },
+          "playerOut": { "name": "Sagiv Jehezkel" }
+        }
+      ],
+      "dismissals": [],
+      "source": {
+        "name": "Manual example",
+        "url": "https://www.maccabi-tlv.co.il/en/match/2025-08-maccabi-tel-aviv/",
+        "ifaUrl": "",
+        "verificationStatus": "manual-example"
+      },
+      "notes": ["Example shape only; verify before relying on it."]
+    }
+  ]
+}

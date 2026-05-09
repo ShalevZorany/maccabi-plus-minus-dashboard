@@ -1,0 +1,17 @@
+{
+  "name": "maccabicheck",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Maccabi Tel Aviv plus/minus dashboard for Israeli Premier League matches.",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "import": "node scripts/import.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:logic": "node --test tests/plusMinus.test.mjs tests/importer.test.mjs",
+    "test:api": "node --test tests/api-smoke.test.mjs"
+  }
+}

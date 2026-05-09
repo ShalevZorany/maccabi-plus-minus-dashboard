@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">maccabicheck football plus/minus dashboard icon</title>
+  <desc id="desc">Blue and yellow original icon showing a football pitch, ball, and plus/minus dashboard cards.</desc>
+  <defs>
+    <linearGradient id="sky" x1="74" x2="438" y1="34" y2="486" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#075bb7"/>
+      <stop offset=".58" stop-color="#063c8b"/>
+      <stop offset="1" stop-color="#031a3d"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="96" x2="420" y1="120" y2="414" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffe76a"/>
+      <stop offset="1" stop-color="#f6be00"/>
+    </linearGradient>
+    <clipPath id="tile">
+      <rect width="512" height="512" rx="112"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="512" height="512" fill="url(#sky)"/>
+    <path fill="#0f6cd1" opacity=".72" d="M-18 386c74-30 130-37 197-14 85 30 168 15 242-41 43-33 80-47 119-45v226H-18Z"/>
+    <path fill="#042a61" opacity=".5" d="M-10 78c78 55 144 74 218 55 96-25 155-2 237 66 32 27 61 41 94 42V0H-10Z"/>
+    <path fill="none" stroke="#ffe34f" stroke-linecap="round" stroke-width="10" d="M102 94h176M326 94h84"/>
+    <g opacity=".24" stroke="#ffffff" stroke-width="6">
+      <path fill="none" d="M72 166h368v210H72z"/>
+      <path fill="none" d="M256 166v210"/>
+      <circle cx="256" cy="271" r="48" fill="none"/>
+      <path fill="none" d="M72 220h66v102H72M440 220h-66v102h66"/>
+    </g>
+    <g transform="translate(82 139) rotate(-5 174 137)">
+      <rect width="348" height="274" rx="48" fill="#ffffff" opacity=".12"/>
+      <rect x="22" y="24" width="304" height="226" rx="36" fill="#062e6c"/>
+      <path fill="#0f6cd1" d="M52 50h244a12 12 0 0 1 12 12v56H40V62a12 12 0 0 1 12-12Z"/>
+      <path fill="url(#gold)" d="M72 86h70a12 12 0 0 1 12 12v76a12 12 0 0 1-12 12H72a12 12 0 0 1-12-12V98a12 12 0 0 1 12-12Z"/>
+      <path fill="#ffffff" d="M104 112h15v17h18v15h-18v18h-15v-18H86v-15h18Z"/>
+      <path fill="#0b4fa3" d="M204 86h70a12 12 0 0 1 12 12v76a12 12 0 0 1-12 12h-70a12 12 0 0 1-12-12V98a12 12 0 0 1 12-12Z"/>
+      <path fill="#ffe76a" d="M216 128h46v17h-46Z"/>
+      <path fill="none" stroke="#5ea5ff" stroke-linecap="round" stroke-width="12" d="M66 218h74M170 218h42M240 218h42"/>
+    </g>
+    <g transform="translate(183 260)">
+      <circle cx="73" cy="73" r="72" fill="#fff"/>
+      <path fill="#061f49" d="m73 22 31 23-12 37H54L42 45Z"/>
+      <path fill="#061f49" d="m26 74 26 19-10 32c-16-8-28-22-33-39Zm94 0 17 12c-5 17-17 31-33 39L94 93Zm-68 19h42l13 39a71 71 0 0 1-68 0Zm-28-44c9-15 24-26 41-30l-13 26Zm57-30c17 4 32 15 41 30L94 45Z"/>
+      <path fill="none" stroke="#dce9ff" stroke-width="6" d="M73 1a72 72 0 1 1 0 144A72 72 0 0 1 73 1Z"/>
+    </g>
+    <path fill="#ffe76a" d="M372 369c15 0 27 12 27 27s-12 27-27 27-27-12-27-27 12-27 27-27Zm3-51 23 7-11 34h-31Z"/>
+  </g>
+</svg>

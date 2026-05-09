@@ -2,6 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "node -e \"console.log('Using public/ as the static output for Vercel')\"",
   "cleanUrls": true,
+  "framework": null,
   "installCommand": "node -e \"console.log('No npm dependencies to install')\"",
   "outputDirectory": "public",
   "trailingSlash": false,

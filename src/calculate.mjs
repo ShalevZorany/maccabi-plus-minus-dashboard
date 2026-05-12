@@ -43,6 +43,10 @@ export function calculateSeason(matches = []) {
     return a.name.localeCompare(b.name);
   });
 
+  for (const player of players) {
+    addRateStats(player);
+  }
+
   return {
     players,
     matches: matchCalculations,
@@ -133,6 +137,7 @@ export function calculateMatch(match) {
   }
 
   for (const stat of Object.values(playerStats)) {
+    addRateStats(stat);
     stat.match = {
       matchId: match.id,
       date: match.date,
@@ -143,6 +148,8 @@ export function calculateMatch(match) {
       plusMinus: stat.plusMinus,
       goalsForOn: stat.goalsForOn,
       goalsAgainstOn: stat.goalsAgainstOn,
+      minutesPerGoalFor: stat.minutesPerGoalFor,
+      minutesPerGoalAgainst: stat.minutesPerGoalAgainst,
       intervals: stat.intervals,
       affectingGoals: stat.affectingGoals
     };
@@ -254,6 +261,16 @@ function pushInterval(intervals, interval, endDisplay, endKey, exitReason) {
     exitReason,
     minutes
   });
+}
+
+function addRateStats(stat) {
+  stat.minutesPerGoalFor = minutesPerGoal(stat.minutes, stat.goalsForOn);
+  stat.minutesPerGoalAgainst = minutesPerGoal(stat.minutes, stat.goalsAgainstOn);
+}
+
+function minutesPerGoal(minutes, goals) {
+  if (!goals) return null;
+  return Math.round((minutes / goals) * 10) / 10;
 }
 
 function resolveDuration(match) {

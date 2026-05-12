@@ -29,7 +29,13 @@ const playerSortColumns = {
   appearances: "משחקים",
   goalsForOn: "שערי מכבי איתו",
   goalsAgainstOn: "שערים שספגה איתו",
+  minutesPerGoalFor: "דק׳ לשער זכות",
+  minutesPerGoalAgainst: "דק׳ לשער חובה",
   plusMinus: "פלוס/מינוס"
+};
+const playerSortDefaultDirections = {
+  minutesPerGoalFor: "asc",
+  minutesPerGoalAgainst: "desc"
 };
 
 refreshButton.addEventListener("click", refreshData);
@@ -205,6 +211,8 @@ function renderPlayers() {
               ${renderPlayerSortHeader("appearances")}
               ${renderPlayerSortHeader("goalsForOn")}
               ${renderPlayerSortHeader("goalsAgainstOn")}
+              ${renderPlayerSortHeader("minutesPerGoalFor")}
+              ${renderPlayerSortHeader("minutesPerGoalAgainst")}
               ${renderPlayerSortHeader("plusMinus")}
             </tr>
           </thead>
@@ -248,6 +256,8 @@ function renderPlayerRow(player) {
       <td class="numeric">${player.appearances}</td>
       <td class="numeric">${player.goalsForOn}</td>
       <td class="numeric">${player.goalsAgainstOn}</td>
+      <td class="numeric">${formatMinutesPerGoal(player.minutesPerGoalFor)}</td>
+      <td class="numeric">${formatMinutesPerGoal(player.minutesPerGoalAgainst)}</td>
       <td class="numeric ${player.plusMinus >= 0 ? "plus" : "minus"}">${formatSigned(player.plusMinus)}</td>
     </tr>
   `;
@@ -344,6 +354,8 @@ function renderPlayer(playerId) {
         <div class="mini-card"><h4>דקות</h4><strong>${Math.round(player.minutes)}</strong></div>
         <div class="mini-card"><h4>הופעות</h4><strong>${player.appearances}</strong></div>
         <div class="mini-card"><h4>שערים עליו</h4><strong>${player.goalsForOn}-${player.goalsAgainstOn}</strong></div>
+        <div class="mini-card"><h4>דקות לשער זכות</h4><strong>${formatMinutesPerGoal(player.minutesPerGoalFor)}</strong></div>
+        <div class="mini-card"><h4>דקות לשער חובה</h4><strong>${formatMinutesPerGoal(player.minutesPerGoalAgainst)}</strong></div>
       </div>
       <div class="table-wrap">
         <table>
@@ -416,10 +428,14 @@ function filteredPlayers() {
 function comparePlayers(playerA, playerB) {
   const key = state.playerSort.key;
   const directionMultiplier = state.playerSort.direction === "asc" ? 1 : -1;
-  const valueA = Number(playerA[key] ?? 0);
-  const valueB = Number(playerB[key] ?? 0);
+  const valueA = playerA[key];
+  const valueB = playerB[key];
 
-  if (valueA !== valueB) return (valueA - valueB) * directionMultiplier;
+  if (valueA == null && valueB == null) return (playerA.name || "").localeCompare(playerB.name || "", "he");
+  if (valueA == null) return 1;
+  if (valueB == null) return -1;
+
+  if (Number(valueA) !== Number(valueB)) return (Number(valueA) - Number(valueB)) * directionMultiplier;
   return (playerA.name || "").localeCompare(playerB.name || "", "he");
 }
 
@@ -436,7 +452,7 @@ function updatePlayerSort(key) {
     state.playerSort.direction = state.playerSort.direction === "asc" ? "desc" : "asc";
   } else {
     state.playerSort.key = key;
-    state.playerSort.direction = "desc";
+    state.playerSort.direction = playerSortDefaultDirections[key] || "desc";
   }
 
   render();
@@ -467,6 +483,11 @@ function teamLabel(team) {
 
 function formatSigned(value) {
   return value > 0 ? `+${value}` : String(value);
+}
+
+function formatMinutesPerGoal(value) {
+  if (value == null) return "אין";
+  return Number.isInteger(value) ? String(value) : value.toFixed(1);
 }
 
 function formatDateTime(value) {

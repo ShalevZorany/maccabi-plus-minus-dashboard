@@ -14,7 +14,7 @@ test("players table exposes sortable metric columns with plus/minus descending d
   assert.match(appJs, /data-player-sort/);
   assert.match(appJs, /aria-sort=/);
 
-  for (const key of ["minutes", "appearances", "goalsForOn", "goalsAgainstOn", "plusMinus"]) {
+  for (const key of ["minutes", "appearances", "goalsForOn", "goalsAgainstOn", "minutesPerGoalFor", "minutesPerGoalAgainst", "plusMinus"]) {
     assert.match(appJs, new RegExp(`${key}:`), `missing sortable metric ${key}`);
     assert.match(appJs, new RegExp(`renderPlayerSortHeader\\("${key}"\\)`), `missing header for ${key}`);
   }

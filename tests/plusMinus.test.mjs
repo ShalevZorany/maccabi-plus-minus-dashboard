@@ -75,6 +75,32 @@ test("multiple goals in one match accumulate correctly", () => {
   assert.equal(subOne.plusMinus, 1);
 });
 
+test("season exposes minutes per goal rates for each player", () => {
+  const season = calculateSeason([
+    matchFixture({
+      goals: [
+        { minute: "10", sortOrder: 1, team: "maccabi", scorer: "Starter 3" },
+        { minute: "40", sortOrder: 2, team: "maccabi", scorer: "Starter 4" },
+        { minute: "80", sortOrder: 3, team: "opponent", scorer: "Opponent" }
+      ]
+    })
+  ]);
+  const starterOne = season.players.find((player) => player.playerId === "starter-1");
+
+  assert.equal(starterOne.minutesPerGoalFor, 45);
+  assert.equal(starterOne.minutesPerGoalAgainst, 90);
+  assert.equal(starterOne.matches[0].minutesPerGoalFor, 45);
+  assert.equal(starterOne.matches[0].minutesPerGoalAgainst, 90);
+});
+
+test("minutes per goal rates are null when no relevant goals happened", () => {
+  const season = calculateSeason([matchFixture()]);
+  const starterOne = season.players.find((player) => player.playerId === "starter-1");
+
+  assert.equal(starterOne.minutesPerGoalFor, null);
+  assert.equal(starterOne.minutesPerGoalAgainst, null);
+});
+
 function sub(minute, sortOrder, playerIn, playerOut) {
   return {
     minute,

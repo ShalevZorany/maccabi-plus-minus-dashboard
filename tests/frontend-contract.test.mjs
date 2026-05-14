@@ -32,6 +32,14 @@ test("players table can be filtered by minimum played minutes", () => {
   assert.match(appJs, /לפחות \$\{minMinutes\} דקות משחק/);
 });
 
+test("import actions stay unavailable until runtime policy is loaded", () => {
+  assert.match(indexHtml, /<div class="hero__actions" hidden>/);
+  assert.match(indexHtml, /id="refreshData"[^>]*disabled/);
+  assert.match(indexHtml, /id="manualFile"[^>]*disabled/);
+  assert.match(appJs, /heroActions\.hidden = !showActions/);
+  assert.match(appJs, /configureImportControls\(\);\s*}\s*}/);
+});
+
 test("mobile table overflow is isolated to the table wrapper", () => {
   assert.match(css, /html\s*{[^}]*overflow-x:\s*hidden/s);
   assert.match(css, /body\s*{[^}]*overflow-x:\s*hidden/s);

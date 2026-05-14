@@ -82,6 +82,7 @@ function configureImportControls() {
   manualImportLabel.style.display = manualImportEnabled ? "" : "none";
   refreshButton.style.display = manualImportEnabled ? "" : "none";
   const heroActions = document.querySelector(".hero__actions");
+  heroActions.hidden = !showActions;
   heroActions.style.display = showActions ? "" : "none";
 
   refreshButton.textContent = autoRefresh ? "עדכון אוטומטי פעיל" : "רענון נתונים מאתר מכבי";
@@ -104,8 +105,7 @@ async function refreshData() {
   } catch (error) {
     alert(`ייבוא נכשל: ${error.message}`);
   } finally {
-    refreshButton.disabled = false;
-    refreshButton.textContent = "רענון נתונים מאתר מכבי";
+    configureImportControls();
   }
 }
 

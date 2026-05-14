@@ -20,6 +20,18 @@ test("players table exposes sortable metric columns with plus/minus descending d
   }
 });
 
+test("players table can be filtered by minimum played minutes", () => {
+  assert.match(indexHtml, /id="minMinutesFilter"/);
+  assert.match(indexHtml, /type="search"/);
+  assert.match(indexHtml, /inputmode="numeric"/);
+  assert.match(indexHtml, /placeholder="למשל 500 או 1000"/);
+  assert.match(appJs, /minMinutes:\s*""/);
+  assert.match(appJs, /\["minMinutes",\s*"#minMinutesFilter"\]/);
+  assert.match(appJs, /function parseMinMinutesFilter\(\)/);
+  assert.match(appJs, /Number\(player\.minutes \|\| 0\) < minMinutes/);
+  assert.match(appJs, /לפחות \$\{minMinutes\} דקות משחק/);
+});
+
 test("mobile table overflow is isolated to the table wrapper", () => {
   assert.match(css, /html\s*{[^}]*overflow-x:\s*hidden/s);
   assert.match(css, /body\s*{[^}]*overflow-x:\s*hidden/s);

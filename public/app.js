@@ -12,7 +12,8 @@ const state = {
     homeAway: "",
     fromDate: "",
     toDate: "",
-    role: ""
+    role: "",
+    minMinutes: ""
   }
 };
 
@@ -48,7 +49,8 @@ for (const [key, selector] of [
   ["homeAway", "#homeAwayFilter"],
   ["fromDate", "#fromDateFilter"],
   ["toDate", "#toDateFilter"],
-  ["role", "#roleFilter"]
+  ["role", "#roleFilter"],
+  ["minMinutes", "#minMinutesFilter"]
 ]) {
   document.querySelector(selector).addEventListener("input", (event) => {
     state.filters[key] = event.target.value;
@@ -193,12 +195,15 @@ function renderPlayers() {
   const players = filteredPlayers();
   const sortLabel = playerSortColumns[state.playerSort.key] || playerSortColumns.plusMinus;
   const sortDirection = state.playerSort.direction === "asc" ? "מהנמוך לגבוה" : "מהגבוה לנמוך";
+  const minMinutes = parseMinMinutesFilter();
+  const minMinutesBadge = minMinutes > 0 ? `<span class="badge">לפחות ${minMinutes} דקות משחק</span>` : "";
   view.innerHTML = `
     <section class="panel">
       <div class="panel__head">
         <div>
           <h2>טבלת שחקנים</h2>
           <span class="badge">מיון: ${escapeHtml(sortLabel)} · ${sortDirection}</span>
+          ${minMinutesBadge}
         </div>
         <span class="badge">${players.length} שחקנים</span>
       </div>
@@ -217,7 +222,7 @@ function renderPlayers() {
             </tr>
           </thead>
           <tbody>
-            ${players.map(renderPlayerRow).join("")}
+            ${players.length ? players.map(renderPlayerRow).join("") : "<tr><td colspan=\"8\">אין שחקנים שעומדים בסינון הנוכחי</td></tr>"}
           </tbody>
         </table>
       </div>
@@ -415,14 +420,23 @@ function renderValidation(validation = {}) {
 }
 
 function filteredPlayers() {
+  const minMinutes = parseMinMinutesFilter();
+
   return (state.dashboard.players || [])
     .filter((player) => {
       if (state.filters.player && !player.name.toLowerCase().includes(state.filters.player.toLowerCase())) return false;
       if (state.filters.role === "starter" && player.starts === 0) return false;
       if (state.filters.role === "substitute" && player.substituteAppearances === 0) return false;
+      if (minMinutes > 0 && Number(player.minutes || 0) < minMinutes) return false;
       return player.matches.some((match) => matchPassesDateAndOpponent(match));
     })
     .sort(comparePlayers);
+}
+
+function parseMinMinutesFilter() {
+  const value = Number(state.filters.minMinutes);
+  if (!Number.isFinite(value) || value < 0) return 0;
+  return Math.floor(value);
 }
 
 function comparePlayers(playerA, playerB) {

@@ -28,6 +28,8 @@ const manualImportLabel = manualFileInput.closest("label");
 const playerSortColumns = {
   minutes: "דקות",
   appearances: "משחקים",
+  starts: "פתח",
+  startedWinPercentage: "% נצחונות כשפתח",
   goalsForOn: "שערי מכבי איתו",
   goalsAgainstOn: "שערים שספגה איתו",
   minutesPerGoalFor: "דק׳ לשער זכות",
@@ -214,6 +216,8 @@ function renderPlayers() {
               <th>שחקן</th>
               ${renderPlayerSortHeader("minutes")}
               ${renderPlayerSortHeader("appearances")}
+              ${renderPlayerSortHeader("starts")}
+              ${renderPlayerSortHeader("startedWinPercentage")}
               ${renderPlayerSortHeader("goalsForOn")}
               ${renderPlayerSortHeader("goalsAgainstOn")}
               ${renderPlayerSortHeader("minutesPerGoalFor")}
@@ -222,7 +226,7 @@ function renderPlayers() {
             </tr>
           </thead>
           <tbody>
-            ${players.length ? players.map(renderPlayerRow).join("") : "<tr><td colspan=\"8\">אין שחקנים שעומדים בסינון הנוכחי</td></tr>"}
+            ${players.length ? players.map(renderPlayerRow).join("") : "<tr><td colspan=\"10\">אין שחקנים שעומדים בסינון הנוכחי</td></tr>"}
           </tbody>
         </table>
       </div>
@@ -259,6 +263,8 @@ function renderPlayerRow(player) {
       <td><button class="player-link" onclick="location.hash='player/${player.playerId}'">${escapeHtml(player.name)}</button></td>
       <td class="numeric">${Math.round(player.minutes)}</td>
       <td class="numeric">${player.appearances}</td>
+      <td class="numeric">${player.starts}</td>
+      <td class="numeric">${formatPercentage(player.startedWinPercentage)}</td>
       <td class="numeric">${player.goalsForOn}</td>
       <td class="numeric">${player.goalsAgainstOn}</td>
       <td class="numeric">${formatMinutesPerGoal(player.minutesPerGoalFor)}</td>
@@ -358,6 +364,8 @@ function renderPlayer(playerId) {
       <div class="match-card__grid match-card">
         <div class="mini-card"><h4>דקות</h4><strong>${Math.round(player.minutes)}</strong></div>
         <div class="mini-card"><h4>הופעות</h4><strong>${player.appearances}</strong></div>
+        <div class="mini-card"><h4>פתח בהרכב</h4><strong>${player.starts}</strong></div>
+        <div class="mini-card"><h4>% נצחונות כשפתח</h4><strong>${formatPercentage(player.startedWinPercentage)}</strong></div>
         <div class="mini-card"><h4>שערים עליו</h4><strong>${player.goalsForOn}-${player.goalsAgainstOn}</strong></div>
         <div class="mini-card"><h4>דקות לשער זכות</h4><strong>${formatMinutesPerGoal(player.minutesPerGoalFor)}</strong></div>
         <div class="mini-card"><h4>דקות לשער חובה</h4><strong>${formatMinutesPerGoal(player.minutesPerGoalAgainst)}</strong></div>
@@ -502,6 +510,11 @@ function formatSigned(value) {
 function formatMinutesPerGoal(value) {
   if (value == null) return "אין";
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
+}
+
+function formatPercentage(value) {
+  if (value == null) return "אין";
+  return `${Number.isInteger(value) ? value : value.toFixed(1)}%`;
 }
 
 function formatDateTime(value) {

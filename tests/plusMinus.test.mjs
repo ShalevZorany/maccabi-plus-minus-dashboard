@@ -101,6 +101,51 @@ test("minutes per goal rates are null when no relevant goals happened", () => {
   assert.equal(starterOne.minutesPerGoalAgainst, null);
 });
 
+test("season exposes win percentage for matches a player started", () => {
+  const season = calculateSeason([
+    matchFixture({
+      id: "started-win",
+      goals: [{ minute: "20", sortOrder: 1, team: "maccabi", scorer: "Starter 2" }],
+      maccabiGoals: 1,
+      opponentGoals: 0,
+      homeGoals: 1,
+      awayGoals: 0,
+      result: "1-0"
+    }),
+    matchFixture({
+      id: "started-draw",
+      goals: [
+        { minute: "20", sortOrder: 1, team: "maccabi", scorer: "Starter 2" },
+        { minute: "60", sortOrder: 2, team: "opponent", scorer: "Opponent" }
+      ],
+      maccabiGoals: 1,
+      opponentGoals: 1,
+      homeGoals: 1,
+      awayGoals: 1,
+      result: "1-1"
+    }),
+    matchFixture({
+      id: "sub-win",
+      goals: [{ minute: "20", sortOrder: 1, team: "maccabi", scorer: "Starter 2" }],
+      maccabiGoals: 1,
+      opponentGoals: 0,
+      homeGoals: 1,
+      awayGoals: 0,
+      result: "1-0",
+      substitutions: [sub("60", 1, "Sub 1", "Starter 1")]
+    })
+  ]);
+  const starterOne = season.players.find((player) => player.playerId === "starter-1");
+  const subOne = season.players.find((player) => player.playerId === "sub-1");
+
+  assert.equal(starterOne.starts, 3);
+  assert.equal(starterOne.startedWins, 2);
+  assert.equal(starterOne.startedWinPercentage, 66.7);
+  assert.equal(subOne.starts, 0);
+  assert.equal(subOne.startedWins, 0);
+  assert.equal(subOne.startedWinPercentage, null);
+});
+
 function sub(minute, sortOrder, playerIn, playerOut) {
   return {
     minute,

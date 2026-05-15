@@ -18,6 +18,7 @@ export function calculateSeason(matches = []) {
         minutes: 0,
         appearances: 0,
         starts: 0,
+        startedWins: 0,
         substituteAppearances: 0,
         goalsForOn: 0,
         goalsAgainstOn: 0,
@@ -28,6 +29,7 @@ export function calculateSeason(matches = []) {
       existing.minutes += stat.minutes;
       existing.appearances += stat.appeared ? 1 : 0;
       existing.starts += stat.started ? 1 : 0;
+      existing.startedWins += stat.started && matchResult.maccabiWon ? 1 : 0;
       existing.substituteAppearances += stat.substituteAppearance ? 1 : 0;
       existing.goalsForOn += stat.goalsForOn;
       existing.goalsAgainstOn += stat.goalsAgainstOn;
@@ -144,6 +146,7 @@ export function calculateMatch(match) {
       opponent: match.opponent,
       homeAway: match.homeAway,
       result: match.result,
+      started: stat.started,
       minutes: stat.minutes,
       plusMinus: stat.plusMinus,
       goalsForOn: stat.goalsForOn,
@@ -162,6 +165,7 @@ export function calculateMatch(match) {
     opponent: match.opponent,
     homeAway: match.homeAway,
     result: match.result,
+    maccabiWon: isMaccabiWin(match),
     status: match.status,
     source: match.source,
     minutePrecision: match.minutePrecision,
@@ -266,11 +270,20 @@ function pushInterval(intervals, interval, endDisplay, endKey, exitReason) {
 function addRateStats(stat) {
   stat.minutesPerGoalFor = minutesPerGoal(stat.minutes, stat.goalsForOn);
   stat.minutesPerGoalAgainst = minutesPerGoal(stat.minutes, stat.goalsAgainstOn);
+  stat.startedWinPercentage = stat.starts ? Math.round((stat.startedWins / stat.starts) * 1000) / 10 : null;
 }
 
 function minutesPerGoal(minutes, goals) {
   if (!goals) return null;
   return Math.round((minutes / goals) * 10) / 10;
+}
+
+function isMaccabiWin(match) {
+  const maccabiGoals = Number(match.maccabiGoals ?? (match.homeAway === "home" ? match.homeGoals : match.awayGoals));
+  const opponentGoals = Number(match.opponentGoals ?? (match.homeAway === "home" ? match.awayGoals : match.homeGoals));
+
+  if (!Number.isFinite(maccabiGoals) || !Number.isFinite(opponentGoals)) return false;
+  return maccabiGoals > opponentGoals;
 }
 
 function resolveDuration(match) {

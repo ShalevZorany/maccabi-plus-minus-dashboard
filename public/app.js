@@ -61,8 +61,16 @@ for (const [key, selector] of [
 }
 
 window.addEventListener("hashchange", applyRoute);
-await loadDashboard();
-applyRoute();
+await initializeDashboard();
+
+async function initializeDashboard() {
+  try {
+    await loadDashboard();
+    applyRoute();
+  } catch (error) {
+    renderLoadFailure(error);
+  }
+}
 
 async function loadDashboard() {
   view.innerHTML = "<div class=\"empty-state\"><h2>טוען נתונים...</h2></div>";
@@ -70,6 +78,26 @@ async function loadDashboard() {
   configureImportControls();
   updateHero();
   renderQualityStrip();
+}
+
+function renderLoadFailure(error) {
+  state.dashboard = null;
+  heroMetric.textContent = "אין נתונים";
+  heroSubMetric.textContent = "לא ניתן לטעון את הדאשבורד כרגע";
+  qualityPanel.innerHTML = `
+    <div class="notice notice--warn">
+      <strong>טעינת נתונים נכשלה:</strong>
+      ${escapeHtml(error?.message || "שגיאת תקשורת")}
+    </div>
+  `;
+  document.querySelector(".hero__actions").hidden = true;
+  view.innerHTML = `
+    <div class="empty-state">
+      <h2>הנתונים לא זמינים כרגע</h2>
+      <p>העמוד נשאר פעיל. אפשר לנסות לטעון שוב בעוד רגע.</p>
+      <button type="button" class="button button--primary" data-retry-load>נסה שוב</button>
+    </div>
+  `;
 }
 
 function configureImportControls() {
@@ -462,6 +490,12 @@ function comparePlayers(playerA, playerB) {
 }
 
 function handleViewClick(event) {
+  const retryButton = event.target.closest?.("[data-retry-load]");
+  if (retryButton) {
+    initializeDashboard();
+    return;
+  }
+
   const sortButton = event.target.closest?.("[data-player-sort]");
   if (!sortButton) return;
   updatePlayerSort(sortButton.dataset.playerSort);

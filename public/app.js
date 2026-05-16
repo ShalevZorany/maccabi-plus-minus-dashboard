@@ -503,6 +503,7 @@ function handleViewClick(event) {
 
 function updatePlayerSort(key) {
   if (!playerSortColumns[key]) return;
+  const scrollPosition = captureTableScrollPosition();
 
   if (state.playerSort.key === key) {
     state.playerSort.direction = state.playerSort.direction === "asc" ? "desc" : "asc";
@@ -512,6 +513,27 @@ function updatePlayerSort(key) {
   }
 
   render();
+  restoreTableScrollPosition(scrollPosition);
+}
+
+function captureTableScrollPosition() {
+  const tableWrap = document.querySelector(".table-wrap");
+  return {
+    pageX: window.scrollX,
+    pageY: window.scrollY,
+    tableLeft: tableWrap?.scrollLeft ?? 0
+  };
+}
+
+function restoreTableScrollPosition(scrollPosition) {
+  const restore = () => {
+    const tableWrap = document.querySelector(".table-wrap");
+    if (tableWrap) tableWrap.scrollLeft = scrollPosition.tableLeft;
+    window.scrollTo(scrollPosition.pageX, scrollPosition.pageY);
+  };
+
+  restore();
+  requestAnimationFrame(restore);
 }
 
 function filteredMatches() {

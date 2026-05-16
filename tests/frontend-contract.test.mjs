@@ -13,6 +13,8 @@ test("players table exposes sortable metric columns with plus/minus descending d
   assert.match(appJs, /view\.addEventListener\("click",\s*handleViewClick\)/);
   assert.match(appJs, /data-player-sort/);
   assert.match(appJs, /aria-sort=/);
+  assert.match(appJs, /captureTableScrollPosition\(\)/);
+  assert.match(appJs, /restoreTableScrollPosition\(scrollPosition\)/);
 
   for (const key of ["minutes", "appearances", "starts", "startedWinPercentage", "goalsForOn", "goalsAgainstOn", "minutesPerGoalFor", "minutesPerGoalAgainst", "plusMinus"]) {
     assert.match(appJs, new RegExp(`${key}:`), `missing sortable metric ${key}`);
@@ -50,6 +52,7 @@ test("mobile table overflow is isolated to the table wrapper", () => {
   assert.match(css, /@media\s*\(max-width:\s*560px\)/);
   assert.match(css, /th:first-child,\s*td:first-child\s*{[^}]*position:\s*sticky/s);
   assert.match(css, /font-variant-numeric:\s*tabular-nums/);
+  assert.doesNotMatch(css, /@supports\s*\(content-visibility:\s*auto\)\s*{[\s\S]*?\.panel[\s\S]*?content-visibility:\s*auto/s);
 });
 
 test("web app manifest and icons are wired from the HTML shell", () => {

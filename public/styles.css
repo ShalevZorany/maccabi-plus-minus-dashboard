@@ -622,8 +622,6 @@ code {
 
 @supports (content-visibility: auto) {
   .score-card,
-  .shell,
-  .panel,
   .match-card,
   .mini-card,
   .empty-state {

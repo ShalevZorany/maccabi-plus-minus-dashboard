@@ -12,6 +12,7 @@
   --green: #117a52;
   --red: #b94343;
   --shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
+  --surface-grid: rgba(255, 255, 255, 0.048);
   font-family: "Avenir Next", "Noto Sans Hebrew", "Segoe UI", sans-serif;
 }
 
@@ -29,8 +30,9 @@ body {
   overflow-x: hidden;
   color: var(--ink);
   background:
-    radial-gradient(circle at 12% 8%, rgba(243, 204, 38, 0.32), transparent 24rem),
-    radial-gradient(circle at 86% 18%, rgba(14, 90, 167, 0.45), transparent 22rem),
+    repeating-linear-gradient(90deg, var(--surface-grid) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(180deg, rgba(243, 204, 38, 0.04) 0 1px, transparent 1px 96px),
+    linear-gradient(135deg, rgba(14, 90, 167, 0.3), transparent 28rem),
     linear-gradient(135deg, var(--bg), var(--bg-2));
 }
 
@@ -57,7 +59,11 @@ a {
   align-items: end;
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 4rem 0 2rem;
+  padding:
+    max(4rem, env(safe-area-inset-top))
+    max(0px, env(safe-area-inset-right))
+    2rem
+    max(0px, env(safe-area-inset-left));
   color: #fff;
 }
 
@@ -92,9 +98,13 @@ a {
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   border-radius: 999px;
   padding: 0.85rem 1.15rem;
+  min-height: 44px;
   cursor: pointer;
   font-weight: 800;
   transition: transform 160ms ease, box-shadow 160ms ease;
@@ -180,10 +190,14 @@ a {
 }
 
 .tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--ink);
   text-decoration: none;
   border-radius: 999px;
   padding: 0.75rem 1rem;
+  min-height: 44px;
   background: #edf1f4;
   font-weight: 800;
 }
@@ -258,7 +272,7 @@ a {
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-inline: contain;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable both-edges;
   background:
     linear-gradient(to left, #fff 0, rgba(255, 255, 255, 0)) right / 2.3rem 100% local,
     linear-gradient(to right, #fff 0, rgba(255, 255, 255, 0)) left / 2.3rem 100% local,
@@ -311,6 +325,13 @@ th {
   white-space: normal;
 }
 
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 1px 0 var(--line);
+}
+
 th:first-child,
 td:first-child {
   position: sticky;
@@ -359,6 +380,7 @@ tr:hover td {
   padding: 0;
   font: inherit;
   font-weight: 900;
+  min-height: 32px;
 }
 
 .sort-button {
@@ -524,6 +546,19 @@ code {
     gap: 0.5rem;
   }
 
+  .hero__actions,
+  .tabs,
+  .row-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .button,
+  .tab {
+    justify-content: center;
+    width: 100%;
+  }
+
   .shell {
     padding: 0.55rem;
     border-radius: 20px;
@@ -537,6 +572,11 @@ code {
 
   .filters label {
     gap: 0.3rem;
+  }
+
+  .filters input,
+  .filters select {
+    min-height: 44px;
   }
 
   .panel {
@@ -577,6 +617,46 @@ code {
     line-height: 1.25;
     text-align: inherit;
     white-space: normal;
+  }
+}
+
+@supports (content-visibility: auto) {
+  .score-card,
+  .shell,
+  .panel,
+  .match-card,
+  .mini-card,
+  .empty-state {
+    content-visibility: auto;
+    contain-intrinsic-size: 220px;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --muted: #43566b;
+    --line: rgba(16, 36, 58, 0.28);
+    --blue-2: #084f94;
+  }
+
+  .button,
+  .tab,
+  .filters input,
+  .filters select,
+  .panel,
+  .mini-card {
+    border-width: 2px;
+  }
+}
+
+@media (forced-colors: active) {
+  .button,
+  .tab,
+  .score-card,
+  .shell,
+  .panel,
+  .mini-card {
+    border: 1px solid CanvasText;
   }
 }
 

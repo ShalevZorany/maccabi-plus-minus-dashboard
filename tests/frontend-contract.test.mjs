@@ -40,8 +40,9 @@ test("players table can be filtered by minimum played minutes", () => {
 test("import actions stay unavailable until runtime policy is loaded", () => {
   assert.match(indexHtml, /<div class="hero__actions" hidden>/);
   assert.match(indexHtml, /id="refreshData"[^>]*disabled/);
-  assert.match(indexHtml, /id="manualFile"[^>]*disabled/);
-  assert.match(appJs, /heroActions\.hidden = !showActions/);
+  assert.doesNotMatch(indexHtml, /manualFile/);
+  assert.doesNotMatch(indexHtml, /ייבוא JSON\/CSV ידני/);
+  assert.match(appJs, /heroActions\.hidden = false/);
   assert.match(appJs, /configureImportControls\(\);\s*}\s*}/);
 });
 
@@ -52,6 +53,7 @@ test("mobile table overflow is isolated to the table wrapper", () => {
   assert.match(css, /@media\s*\(max-width:\s*560px\)/);
   assert.match(css, /th:first-child,\s*td:first-child\s*{[^}]*position:\s*sticky/s);
   assert.match(css, /font-variant-numeric:\s*tabular-nums/);
+  assert.doesNotMatch(css, /content:\s*"גלילה"/);
   assert.doesNotMatch(css, /@supports\s*\(content-visibility:\s*auto\)\s*{[\s\S]*?\.panel[\s\S]*?content-visibility:\s*auto/s);
 });
 

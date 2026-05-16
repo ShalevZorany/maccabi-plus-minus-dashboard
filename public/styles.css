@@ -74,6 +74,21 @@ a {
   font-weight: 800;
 }
 
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.brand-title img {
+  width: clamp(58px, 8vw, 86px);
+  height: clamp(58px, 8vw, 86px);
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
+}
+
 .hero h1 {
   margin: 0;
   font-size: clamp(2.4rem, 8vw, 5.8rem);
@@ -279,24 +294,6 @@ a {
     linear-gradient(to left, rgba(6, 58, 118, 0.22), rgba(6, 58, 118, 0)) right / 1.2rem 100% scroll,
     linear-gradient(to right, rgba(6, 58, 118, 0.22), rgba(6, 58, 118, 0)) left / 1.2rem 100% scroll;
   background-repeat: no-repeat;
-}
-
-.table-wrap::after {
-  content: "גלילה";
-  position: sticky;
-  right: max(0.65rem, env(safe-area-inset-right));
-  bottom: 0.65rem;
-  display: inline-flex;
-  align-items: center;
-  pointer-events: none;
-  margin: 0.5rem;
-  padding: 0.22rem 0.55rem;
-  border-radius: 999px;
-  color: #fff;
-  background: rgba(6, 58, 118, 0.84);
-  font-size: 0.72rem;
-  font-weight: 800;
-  box-shadow: 0 6px 18px rgba(6, 58, 118, 0.24);
 }
 
 table {
@@ -507,6 +504,10 @@ code {
     font-size: clamp(2.2rem, 10vw, 4.1rem);
   }
 
+  .brand-title {
+    align-items: flex-start;
+  }
+
   .shell {
     padding: 0.7rem;
     border-radius: 24px;
@@ -532,6 +533,10 @@ code {
   .hero h1 {
     font-size: clamp(2.05rem, 11vw, 2.8rem);
     line-height: 1;
+  }
+
+  .brand-title {
+    gap: 0.7rem;
   }
 
   .hero__text {

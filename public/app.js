@@ -23,8 +23,6 @@ const qualityPanel = document.querySelector("#qualityPanel");
 const heroMetric = document.querySelector("#heroMetric");
 const heroSubMetric = document.querySelector("#heroSubMetric");
 const refreshButton = document.querySelector("#refreshData");
-const manualFileInput = document.querySelector("#manualFile");
-const manualImportLabel = manualFileInput.closest("label");
 const playerSortColumns = {
   minutes: "דקות",
   appearances: "משחקים",
@@ -42,7 +40,6 @@ const playerSortDefaultDirections = {
 };
 
 refreshButton.addEventListener("click", refreshData);
-manualFileInput.addEventListener("change", importManualFile);
 view.addEventListener("click", handleViewClick);
 
 for (const [key, selector] of [
@@ -102,67 +99,34 @@ function renderLoadFailure(error) {
 
 function configureImportControls() {
   const importPolicy = state.dashboard?.importPolicy || {};
-  const autoRefresh = importPolicy.autoRefresh === true;
   const manualImportEnabled = importPolicy.manualImportEnabled !== false;
-  const message = importPolicy.message || "";
-  const showActions = !autoRefresh || manualImportEnabled;
 
-  refreshButton.disabled = !manualImportEnabled;
-  manualFileInput.disabled = !manualImportEnabled;
-  manualImportLabel.style.display = manualImportEnabled ? "" : "none";
-  refreshButton.style.display = manualImportEnabled ? "" : "none";
+  refreshButton.disabled = false;
   const heroActions = document.querySelector(".hero__actions");
-  heroActions.hidden = !showActions;
-  heroActions.style.display = showActions ? "" : "none";
+  heroActions.hidden = false;
+  heroActions.style.display = "";
 
-  refreshButton.textContent = autoRefresh ? "עדכון אוטומטי פעיל" : "רענון נתונים מאתר מכבי";
-  refreshButton.title = message;
-  manualImportLabel.title = message;
+  refreshButton.textContent = "רענון נתונים";
+  refreshButton.title = manualImportEnabled
+    ? "מושך מחדש נתונים מאתר מכבי"
+    : "מרענן את הדאשבורד ומושך נתונים מחדש";
 }
 
 async function refreshData() {
-  if (state.dashboard?.importPolicy?.manualImportEnabled === false) {
-    alert(state.dashboard.importPolicy.message || "עדכון אוטומטי כבר פעיל.");
-    return;
-  }
-
   refreshButton.disabled = true;
   refreshButton.textContent = "מרענן...";
   try {
-    await fetchJson("/api/import/refresh", { method: "POST" });
-    await loadDashboard();
+    if (state.dashboard?.importPolicy?.autoRefresh) {
+      await loadDashboard();
+    } else {
+      await fetchJson("/api/import/refresh", { method: "POST" });
+      await loadDashboard();
+    }
     render();
   } catch (error) {
-    alert(`ייבוא נכשל: ${error.message}`);
+    alert(`רענון נכשל: ${error.message}`);
   } finally {
     configureImportControls();
-  }
-}
-
-async function importManualFile(event) {
-  if (state.dashboard?.importPolicy?.manualImportEnabled === false) {
-    alert(state.dashboard.importPolicy.message || "ייבוא ידני כבוי במצב עדכון אוטומטי.");
-    event.target.value = "";
-    return;
-  }
-
-  const file = event.target.files?.[0];
-  if (!file) return;
-  const text = await file.text();
-  const contentType = file.name.endsWith(".csv") ? "text/csv" : "application/json";
-
-  try {
-    await fetchJson("/api/import/manual", {
-      method: "POST",
-      headers: { "content-type": contentType },
-      body: contentType === "application/json" ? text : text
-    });
-    await loadDashboard();
-    render();
-  } catch (error) {
-    alert(`ייבוא ידני נכשל: ${error.message}`);
-  } finally {
-    event.target.value = "";
   }
 }
 
@@ -179,32 +143,48 @@ function updateHero() {
   const totals = state.dashboard?.totals;
   if (!totals?.matches) {
     heroMetric.textContent = "אין נתונים";
-    heroSubMetric.textContent = state.dashboard?.importPolicy?.message || "לא התקבלו נתונים כרגע";
+    heroSubMetric.textContent = "לא התקבלו נתונים כרגע";
     return;
   }
-  heroMetric.textContent = `${totals.complete}/${totals.finished}`;
-  heroSubMetric.textContent = "משחקים כשירים מתוך משחקים שהסתיימו";
+  const incomplete = finishedIncompleteMatches(state.dashboard);
+  heroMetric.textContent = `נקלטו ${totals.complete} משחקים`;
+  heroSubMetric.textContent = skippedMatchesText(incomplete);
 }
 
 function renderQualityStrip() {
   const dashboard = state.dashboard;
-  const warnings = dashboard?.importStatus?.warnings || [];
-  const incomplete = (dashboard?.matches || []).filter((match) => match.status === "finished" && !match.completeForCalculation);
-  const source = dashboard?.sourcePolicy?.primary || "לא הוגדר מקור";
-  const lastRun = dashboard?.importStatus?.lastRunAt ? formatDateTime(dashboard.importStatus.lastRunAt) : "לא בוצע ייבוא";
-  const importPolicy = dashboard?.importPolicy || {};
-  const mode = importPolicy.autoRefresh ? "אוטומטי בכל טעינה" : "ייבוא ידני";
-  const modeMessage = importPolicy.message ? `<br><strong>מדיניות ייבוא:</strong> ${escapeHtml(importPolicy.message)}` : "";
+  const totals = dashboard?.totals || {};
+  const incomplete = finishedIncompleteMatches(dashboard);
+  const snapshotNote = dashboard?.importPolicy?.mode === "automatic-live-fallback"
+    ? "<span>מוצג הסנאפשוט האחרון.</span>"
+    : "";
 
   qualityPanel.innerHTML = `
-    <div class="notice ${incomplete.length || warnings.length ? "notice--warn" : "notice--ok"}">
-      <strong>מקור נתונים:</strong> ${escapeHtml(source)} ·
-      <strong>ייבוא אחרון:</strong> ${escapeHtml(lastRun)} ·
-      <strong>מצב ייבוא:</strong> ${escapeHtml(mode)} ·
-      <strong>משחקים לא כשירים:</strong> ${incomplete.length}
-      ${modeMessage}
+    <div class="notice ${incomplete.length || snapshotNote ? "notice--warn" : "notice--ok"}">
+      <strong>נקלטו:</strong> ${escapeHtml(String(totals.complete || 0))} משחקים.
+      ${escapeHtml(skippedMatchesText(incomplete))}
+      ${snapshotNote}
     </div>
   `;
+}
+
+function finishedIncompleteMatches(dashboard) {
+  return (dashboard?.matches || []).filter((match) => match.status === "finished" && !match.completeForCalculation);
+}
+
+function skippedMatchesText(matches) {
+  if (!matches.length) return "כל המשחקים שהסתיימו נכנסו לחישוב.";
+  if (matches.length === 1 && isTechnicalDerbyWin(matches[0])) {
+    return "משחק אחד - ניצחון טכני בדרבי - לא נחשב.";
+  }
+  if (matches.length === 1) return "משחק אחד לא נכנס לחישוב.";
+  return `${matches.length} משחקים לא נכנסו לחישוב.`;
+}
+
+function isTechnicalDerbyWin(match) {
+  return /hapoel tel aviv/i.test(match.opponent || "")
+    && match.result === "3-0"
+    && (match.validation?.errors || []).some((error) => /Goal timeline count \(0\)/.test(error));
 }
 
 function render() {
@@ -412,32 +392,20 @@ function renderPlayer(playerId) {
 
 function renderQuality() {
   const matches = filteredMatches();
-  const importPolicy = state.dashboard.importPolicy || {};
+  const incomplete = matches.filter((match) => match.status === "finished" && !match.completeForCalculation);
   view.innerHTML = `
     <section class="panel">
       <div class="panel__head">
-        <h2>איכות נתונים</h2>
-        <span class="badge">${matches.length} משחקים בסינון</span>
+        <h2>משחקים שלא נכנסו לחישוב</h2>
+        <span class="badge">${incomplete.length} משחקים</span>
       </div>
       <div class="match-card">
-        <div class="mini-card">
-          <h4>מדיניות מקור</h4>
-          <p>${escapeHtml(state.dashboard.sourcePolicy?.primary || "")}</p>
-          <ul class="list">${(state.dashboard.sourcePolicy?.notes || []).map((note) => `<li>${escapeHtml(note)}</li>`).join("")}</ul>
-        </div>
-        <div class="mini-card">
-          <h4>מדיניות ייבוא</h4>
-          <p>${importPolicy.autoRefresh ? "אוטומטי בכל טעינה" : "ייבוא ידני"}</p>
-          ${importPolicy.message ? `<p>${escapeHtml(importPolicy.message)}</p>` : ""}
-        </div>
-        ${matches.map((match) => `
+        ${incomplete.length ? incomplete.map((match) => `
           <div class="mini-card">
             <h4>${escapeHtml(match.date || "")} · ${escapeHtml(match.opponent || "")}</h4>
-            <p><a href="${escapeAttribute(match.source?.url || "#")}" target="_blank" rel="noreferrer">מקור מכבי</a></p>
-            <p>אימות התאחדות: ${escapeHtml(match.source?.ifaUrl || "לא הוזן")}</p>
-            ${renderValidation(match.validation)}
+            <p>${escapeHtml(skippedMatchesText([match]))}</p>
           </div>
-        `).join("")}
+        `).join("") : "<div class=\"empty-state\"><h2>אין משחקים חריגים</h2></div>"}
       </div>
     </section>
   `;

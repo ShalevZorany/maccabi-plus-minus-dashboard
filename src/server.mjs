@@ -200,7 +200,7 @@ function getImportPolicy() {
     mode: "local-snapshot",
     autoRefresh: false,
     manualImportEnabled: true,
-    message: "בסביבה מקומית אפשר לרענן ידנית או לייבא קובץ JSON/CSV."
+    message: "אפשר לרענן נתונים מאתר מכבי."
   };
 }
 

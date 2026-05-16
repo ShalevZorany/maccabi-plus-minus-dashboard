@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import { importFromMaccabi } from "../src/importers/maccabi-importer.mjs";
 
 const SNAPSHOT_PATH = resolve(process.cwd(), "data", "matches.json");
-const AUTO_MESSAGE = "הנתונים מתעדכנים אוטומטית בכל טעינה ממקור מכבי.";
+const AUTO_MESSAGE = "הנתונים מתעדכנים מאתר מכבי.";
 const LIVE_IMPORT_TIMEOUT_MS = 12000;
 
 function emptySnapshot() {
@@ -32,12 +32,12 @@ function readSnapshotData() {
   }
 }
 
-function fallbackPolicy(errorMessage) {
+function fallbackPolicy() {
   return {
     mode: "automatic-live-fallback",
     autoRefresh: true,
     manualImportEnabled: false,
-    message: `עדכון אוטומטי נכשל זמנית (${errorMessage}). מוצג הסנאפשוט האחרון.`
+    message: "מוצג הסנאפשוט האחרון."
   };
 }
 

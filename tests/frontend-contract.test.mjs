@@ -15,6 +15,8 @@ test("players table exposes sortable metric columns with plus/minus descending d
   assert.match(appJs, /aria-sort=/);
   assert.match(appJs, /captureTableScrollPosition\(\)/);
   assert.match(appJs, /restoreTableScrollPosition\(scrollPosition\)/);
+  assert.match(appJs, /function renderLoadingState\(message = loadingMessages\.initial, \{ clearView = true, preserveDashboard = false \} = \{\}\)/);
+  assert.match(appJs, /notice--loading/);
 
   for (const key of ["minutes", "appearances", "starts", "startedWinPercentage", "goalsForOn", "goalsAgainstOn", "minutesPerGoalFor", "minutesPerGoalAgainst", "plusMinus"]) {
     assert.match(appJs, new RegExp(`${key}:`), `missing sortable metric ${key}`);
@@ -56,8 +58,10 @@ test("mobile table overflow is isolated to the table wrapper", () => {
   assert.match(css, /html\s*{[^}]*overflow-x:\s*hidden/s);
   assert.match(css, /body\s*{[^}]*overflow-x:\s*hidden/s);
   assert.match(css, /\.table-wrap\s*{[^}]*overflow-x:\s*auto/s);
+  assert.match(css, /\.table-wrap\s*{[^}]*isolation:\s*isolate/s);
   assert.match(css, /@media\s*\(max-width:\s*560px\)/);
   assert.match(css, /th:first-child,\s*td:first-child\s*{[^}]*position:\s*sticky/s);
+  assert.match(css, /th:first-child,\s*td:first-child\s*{[^}]*inset-inline-start:\s*0/s);
   assert.match(css, /font-variant-numeric:\s*tabular-nums/);
   assert.doesNotMatch(css, /content:\s*"גלילה"/);
   assert.doesNotMatch(css, /@supports\s*\(content-visibility:\s*auto\)\s*{[\s\S]*?\.panel[\s\S]*?content-visibility:\s*auto/s);

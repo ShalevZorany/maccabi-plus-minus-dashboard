@@ -200,6 +200,13 @@ a {
   background: #dbe9e3;
 }
 
+.notice--loading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: center;
+}
+
 .tabs {
   margin-bottom: 1rem;
 }
@@ -283,6 +290,7 @@ a {
 .table-wrap {
   position: relative;
   max-width: 100%;
+  isolation: isolate;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -332,14 +340,16 @@ thead th {
 th:first-child,
 td:first-child {
   position: sticky;
-  right: 0;
-  z-index: 1;
+  inset-inline-start: 0;
+  right: auto;
+  z-index: 3;
   min-width: 11rem;
   box-shadow: -1px 0 0 var(--line);
+  background-clip: padding-box;
 }
 
 th:first-child {
-  z-index: 2;
+  z-index: 4;
 }
 
 td:first-child {
@@ -847,6 +857,7 @@ td {
 th:first-child,
 td:first-child {
   box-shadow: -1px 0 0 rgba(148, 163, 184, 0.14);
+  background-clip: padding-box;
 }
 
 /* Center text content within the main dashboard surfaces. */

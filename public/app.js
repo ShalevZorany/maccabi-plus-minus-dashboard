@@ -23,6 +23,10 @@ const qualityPanel = document.querySelector("#qualityPanel");
 const heroMetric = document.querySelector("#heroMetric");
 const heroSubMetric = document.querySelector("#heroSubMetric");
 const refreshButton = document.querySelector("#refreshData");
+const loadingMessages = {
+  initial: "טוען נתונים...",
+  refreshing: "מרענן נתונים..."
+};
 const playerSortColumns = {
   minutes: "דקות",
   appearances: "משחקים",
@@ -62,6 +66,7 @@ await initializeDashboard();
 
 async function initializeDashboard() {
   try {
+    renderLoadingState(loadingMessages.initial);
     await loadDashboard();
     applyRoute();
   } catch (error) {
@@ -70,11 +75,26 @@ async function initializeDashboard() {
 }
 
 async function loadDashboard() {
-  view.innerHTML = "<div class=\"empty-state\"><h2>טוען נתונים...</h2></div>";
   state.dashboard = await fetchJson("/api/dashboard");
   configureImportControls();
   updateHero();
   renderQualityStrip();
+}
+
+function renderLoadingState(message = loadingMessages.initial, { clearView = true, preserveDashboard = false } = {}) {
+  if (!preserveDashboard) state.dashboard = null;
+  heroMetric.textContent = "טוען...";
+  heroSubMetric.textContent = message;
+  qualityPanel.innerHTML = `
+    <div class="notice notice--warn notice--loading" aria-live="polite">
+      <strong>${escapeHtml(message)}</strong>
+      <span>הנתונים נטענים מחדש ומוצגים מיד כשמוכנים.</span>
+    </div>
+  `;
+  document.querySelector(".hero__actions").hidden = true;
+  refreshButton.disabled = true;
+  refreshButton.textContent = "רענון נתונים";
+  if (clearView) view.innerHTML = "";
 }
 
 function renderLoadFailure(error) {
@@ -113,10 +133,12 @@ function configureImportControls() {
 }
 
 async function refreshData() {
+  const shouldAutoRefresh = state.dashboard?.importPolicy?.autoRefresh;
+  renderLoadingState(loadingMessages.refreshing, { clearView: false, preserveDashboard: true });
   refreshButton.disabled = true;
   refreshButton.textContent = "מרענן...";
   try {
-    if (state.dashboard?.importPolicy?.autoRefresh) {
+    if (shouldAutoRefresh) {
       await loadDashboard();
     } else {
       await fetchJson("/api/import/refresh", { method: "POST" });

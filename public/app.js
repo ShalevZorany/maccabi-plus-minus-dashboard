@@ -203,19 +203,22 @@ function render() {
 
 function renderPlayers() {
   const players = filteredPlayers();
+  const totalPlayers = state.dashboard.players?.length || 0;
   const sortLabel = playerSortColumns[state.playerSort.key] || playerSortColumns.plusMinus;
   const sortDirection = state.playerSort.direction === "asc" ? "מהנמוך לגבוה" : "מהגבוה לנמוך";
   const minMinutes = parseMinMinutesFilter();
-  const minMinutesBadge = minMinutes > 0 ? `<span class="badge">לפחות ${minMinutes} דקות משחק</span>` : "";
+  const activeFilters = renderActiveFilterSummary(minMinutes);
   view.innerHTML = `
     <section class="panel">
       <div class="panel__head">
         <div>
           <h2>טבלת שחקנים</h2>
+          <span class="badge badge--active">המספרים מחושבים לפי הסינון הנוכחי</span>
           <span class="badge">מיון: ${escapeHtml(sortLabel)} · ${sortDirection}</span>
-          ${minMinutesBadge}
+          <span class="badge">${players.length} מתוך ${totalPlayers} שחקנים</span>
+          ${activeFilters}
         </div>
-        <span class="badge">${players.length} שחקנים</span>
+        <span class="badge">תוצאות מסוננות</span>
       </div>
       <div class="table-wrap">
         <table class="players-table">
@@ -239,6 +242,28 @@ function renderPlayers() {
         </table>
       </div>
     </section>
+  `;
+}
+
+function renderActiveFilterSummary(minMinutes) {
+  const labels = [];
+
+  if (state.filters.player) labels.push(`שחקן: ${state.filters.player}`);
+  if (state.filters.opponent) labels.push(`יריבה: ${state.filters.opponent}`);
+  if (state.filters.homeAway) labels.push(state.filters.homeAway === "home" ? "בית" : "חוץ");
+  if (state.filters.fromDate) labels.push(`מתאריך: ${state.filters.fromDate}`);
+  if (state.filters.toDate) labels.push(`עד תאריך: ${state.filters.toDate}`);
+  if (state.filters.role) labels.push(state.filters.role === "starter" ? "שחקני הרכב" : "מחליפים");
+  if (minMinutes > 0) labels.push(`לפחות ${minMinutes} דקות משחק`);
+
+  if (!labels.length) {
+    return `<span class="badge">אין סינון פעיל</span>`;
+  }
+
+  return `
+    <div class="filter-summary" aria-label="סינונים פעילים">
+      ${labels.map((label) => `<span class="badge badge--active">${escapeHtml(label)}</span>`).join("")}
+    </div>
   `;
 }
 
@@ -348,6 +373,7 @@ function renderPlayer(playerId) {
 
   const rows = player.matches
     .filter((match) => matchPassesDateAndOpponent(match))
+    .filter((match) => matchPassesAnalysisScope(match))
     .map((match) => `
       <tr>
         <td>${escapeHtml(match.date || "")}</td>
@@ -427,14 +453,42 @@ function filteredPlayers() {
   const minMinutes = parseMinMinutesFilter();
 
   return (state.dashboard.players || [])
+    .map((player) => buildFilteredPlayerStats(player))
+    .filter(Boolean)
     .filter((player) => {
       if (state.filters.player && !player.name.toLowerCase().includes(state.filters.player.toLowerCase())) return false;
-      if (state.filters.role === "starter" && player.starts === 0) return false;
-      if (state.filters.role === "substitute" && player.substituteAppearances === 0) return false;
       if (minMinutes > 0 && Number(player.minutes || 0) < minMinutes) return false;
-      return player.matches.some((match) => matchPassesDateAndOpponent(match));
+      return true;
     })
     .sort(comparePlayers);
+}
+
+function buildFilteredPlayerStats(player) {
+  const baseMatches = (player.matches || [])
+    .filter((match) => matchPassesDateAndOpponent(match));
+
+  if (!baseMatches.length) return null;
+
+  const matches = baseMatches.filter((match) => matchPassesAnalysisScope(match));
+
+  const derived = {
+    ...player,
+    matches
+  };
+
+  derived.minutes = sumBy(matches, (match) => Number(match.minutes || 0));
+  derived.appearances = matches.filter((match) => Number(match.minutes || 0) > 0).length;
+  derived.starts = matches.filter((match) => matchWasStarted(match)).length;
+  derived.startedWins = matches.filter((match) => matchWasStarted(match) && matchWasMaccabiWin(match)).length;
+  derived.substituteAppearances = matches.filter((match) => matchWasSubstitute(match)).length;
+  derived.goalsForOn = sumBy(matches, (match) => Number(match.goalsForOn || 0));
+  derived.goalsAgainstOn = sumBy(matches, (match) => Number(match.goalsAgainstOn || 0));
+  derived.plusMinus = sumBy(matches, (match) => Number(match.plusMinus || 0));
+  derived.startedWinPercentage = derived.starts ? Math.round((derived.startedWins / derived.starts) * 1000) / 10 : null;
+  derived.minutesPerGoalFor = derived.goalsForOn ? Math.round((derived.minutes / derived.goalsForOn) * 10) / 10 : null;
+  derived.minutesPerGoalAgainst = derived.goalsAgainstOn ? Math.round((derived.minutes / derived.goalsAgainstOn) * 10) / 10 : null;
+
+  return derived;
 }
 
 function parseMinMinutesFilter() {
@@ -514,6 +568,37 @@ function matchPassesDateAndOpponent(match) {
   if (state.filters.fromDate && match.date < state.filters.fromDate) return false;
   if (state.filters.toDate && match.date > state.filters.toDate) return false;
   return true;
+}
+
+function matchPassesAnalysisScope(match) {
+  if (state.filters.role === "starter") return matchWasStarted(match);
+  if (state.filters.role === "substitute") return matchWasSubstitute(match);
+  return true;
+}
+
+function matchWasStarted(match) {
+  return match.started === true || (match.intervals || []).some((interval) => interval.role === "starter");
+}
+
+function matchWasSubstitute(match) {
+  return match.substituteAppearance === true
+    || (match.intervals || []).some((interval) => interval.role === "substitute")
+    || (!matchWasStarted(match) && Number(match.minutes || 0) > 0);
+}
+
+function matchWasMaccabiWin(match) {
+  if (typeof match.maccabiWon === "boolean") return match.maccabiWon;
+
+  const score = String(match.result || "").match(/^(\d+)-(\d+)$/);
+  if (!score) return false;
+
+  const maccabiGoals = Number(score[1]);
+  const opponentGoals = Number(score[2]);
+  return Number.isFinite(maccabiGoals) && Number.isFinite(opponentGoals) && maccabiGoals > opponentGoals;
+}
+
+function sumBy(items, iteratee) {
+  return items.reduce((total, item) => total + Number(iteratee(item) || 0), 0);
 }
 
 async function fetchJson(url, options = {}) {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-14T22:06:58.897Z",
+  "generatedAt": "2026-05-17T18:28:16.059Z",
   "sourcePolicy": {
     "primary": "Maccabi Tel Aviv official website",
     "primaryUrl": "https://www.maccabi-tlv.co.il/en/result-fixtures/first-team/results/",
@@ -12,7 +12,7 @@
     ]
   },
   "importStatus": {
-    "lastRunAt": "2026-05-14T22:06:58.897Z",
+    "lastRunAt": "2026-05-17T18:28:16.059Z",
     "source": "Maccabi Tel Aviv official website",
     "warnings": [],
     "matchCount": 36
@@ -620,7 +620,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-08-maccabi-tel-aviv-2/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-08-maccabi-tel-aviv-2/",
@@ -1231,7 +1231,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-09-maccabi-tel-aviv/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-09-maccabi-tel-aviv/",
@@ -1848,7 +1848,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-08-maccabi-tel-aviv/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-08-maccabi-tel-aviv/",
@@ -2447,7 +2447,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-09-maccabi-tel-aviv-2/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-09-maccabi-tel-aviv-2/",
@@ -3033,7 +3033,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-09-maccabi-tel-aviv-3/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-09-maccabi-tel-aviv-3/",
@@ -3636,7 +3636,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-10-maccabi-tel-aviv-8/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-10-maccabi-tel-aviv-8/",
@@ -3690,7 +3690,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-10-maccabi-tel-aviv-9/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-10-maccabi-tel-aviv-9/",
@@ -4310,7 +4310,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-10-maccabi-tel-aviv-3/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-10-maccabi-tel-aviv-3/",
@@ -4915,7 +4915,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-11-maccabi-tel-aviv/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-11-maccabi-tel-aviv/",
@@ -5571,7 +5571,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-11-maccabi-tel-aviv-2/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-11-maccabi-tel-aviv-2/",
@@ -6162,7 +6162,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-11-maccabi-tel-aviv-3/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-11-maccabi-tel-aviv-3/",
@@ -6784,7 +6784,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv/",
@@ -7354,7 +7354,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv-2/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv-2/",
@@ -7958,7 +7958,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv-4/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv-4/",
@@ -8522,7 +8522,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv-5/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv-5/",
@@ -9089,7 +9089,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv-3/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2025-12-maccabi-tel-aviv-3/",
@@ -9704,7 +9704,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv-5/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv-5/",
@@ -10300,7 +10300,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv-4/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv-4/",
@@ -10924,7 +10924,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv-3/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv-3/",
@@ -11534,7 +11534,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv-2/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv-2/",
@@ -12158,7 +12158,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-01-maccabi-tel-aviv/",
@@ -12775,7 +12775,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-02-maccabi-tel-aviv-3/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-02-maccabi-tel-aviv-3/",
@@ -13337,7 +13337,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-02-maccabi-tel-aviv-2/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-02-maccabi-tel-aviv-2/",
@@ -13951,7 +13951,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-02-maccabi-tel-aviv/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-02-maccabi-tel-aviv/",
@@ -14575,7 +14575,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-02-maccabi-tel-aviv-4/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-02-maccabi-tel-aviv-4/",
@@ -15169,7 +15169,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-03-maccabi-tel-aviv/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-03-maccabi-tel-aviv/",
@@ -15754,7 +15754,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-04-maccabi-tel-aviv-5/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-04-maccabi-tel-aviv-5/",
@@ -16359,7 +16359,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-04-maccabi-tel-aviv-6/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-04-maccabi-tel-aviv-6/",
@@ -16956,7 +16956,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-04-maccabi-tel-aviv-7/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-04-maccabi-tel-aviv-7/",
@@ -17585,7 +17585,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-2/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-2/",
@@ -18202,7 +18202,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-3/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-3/",
@@ -18782,7 +18782,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-4/",
-        "importedAt": "2026-05-14T22:06:59.676Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-4/",
@@ -19392,7 +19392,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-5/",
-        "importedAt": "2026-05-14T22:06:59.675Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed",
         "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-5/",
@@ -19415,48 +19415,592 @@
       "date": "2026-05-16",
       "time": "20:30",
       "stadium": "Bloomfield",
-      "status": "scheduled",
+      "status": "finished",
       "homeAway": "home",
       "homeTeam": "Maccabi Tel Aviv",
       "awayTeam": "Beitar Jerusalem",
       "opponent": "Beitar Jerusalem",
-      "maccabiGoals": null,
-      "opponentGoals": null,
-      "homeGoals": null,
-      "awayGoals": null,
-      "result": "not played",
+      "maccabiGoals": 1,
+      "opponentGoals": 2,
+      "homeGoals": 1,
+      "awayGoals": 2,
+      "result": "1-2",
       "duration": {
         "minute": "90"
       },
       "minutePrecision": "base-minute",
       "lineups": {
         "maccabi": {
-          "starters": [],
-          "substitutes": []
+          "starters": [
+            {
+              "id": "ofek-melika",
+              "number": 22,
+              "name": "Ofek Melika",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "roy-revivo",
+              "number": 3,
+              "name": "Roy Revivo",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "tyrese-asante",
+              "number": 6,
+              "name": "Tyrese Asante",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "sagiv-jehezkel",
+              "number": 11,
+              "name": "Sagiv Jehezkel",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "66'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "mohamed-ali-camara",
+              "number": 5,
+              "name": "Mohamed Ali Camara",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "84'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "dor-peretz",
+              "number": 42,
+              "name": "Dor Peretz",
+              "sourceEvents": {
+                "goals": "51'",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "ido-shahar",
+              "number": 36,
+              "name": "Ido Shahar",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "84'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "issouf-sissokho",
+              "number": 28,
+              "name": "Issouf Sissokho",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "saied-abu-farchi",
+              "number": 34,
+              "name": "Saied Abu Farchi",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "66'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "helio-varela",
+              "number": 29,
+              "name": "Helio Varela",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "emir-sahiti",
+              "number": 70,
+              "name": "Emir Sahiti",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "66'",
+                "cards": "37'"
+              }
+            }
+          ],
+          "substitutes": [
+            {
+              "id": "roi-mishpati",
+              "number": 90,
+              "name": "Roi Mishpati",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "itay-ben-hemo",
+              "number": 41,
+              "name": "Itay Ben Hemo",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "84'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "raz-shlomo",
+              "number": 13,
+              "name": "Raz Shlomo",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "noam-ben-harush",
+              "number": 21,
+              "name": "Noam Ben Harush",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "66'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "ben-lederman",
+              "number": 23,
+              "name": "Ben Lederman",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "itamar-noy",
+              "number": 30,
+              "name": "Itamar Noy",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "84'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "kervin-andrade",
+              "number": 10,
+              "name": "Kervin Andrade",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "66'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "elad-madmon",
+              "number": 19,
+              "name": "Elad Madmon",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "66'",
+                "cards": "88'"
+              }
+            },
+            {
+              "id": "yonas-malede",
+              "number": 15,
+              "name": "Yonas Malede",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            }
+          ]
         },
         "opponent": {
-          "starters": [],
-          "substitutes": []
+          "starters": [
+            {
+              "id": "miguel-silva",
+              "number": 55,
+              "name": "Miguel Silva",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "loca-gedrani",
+              "number": 44,
+              "name": "Loca Gedrani",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "yarin-levi",
+              "number": 8,
+              "name": "Yarin Levi",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "76'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "brayan-carabali",
+              "number": 4,
+              "name": "Brayan Carabalí",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "yarden-cohen",
+              "number": 16,
+              "name": "Yarden Cohen",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "omer-azili",
+              "number": 77,
+              "name": "Omer Azili",
+              "sourceEvents": {
+                "goals": "60'",
+                "exchange": "87'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "roey-elimelech",
+              "number": 14,
+              "name": "Roey Elimelech",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "boris-enow",
+              "number": 40,
+              "name": "Boris Enow",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "ziv-ben-shimol",
+              "number": 6,
+              "name": "Ziv Ben Shimol",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "62'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "yarden-shua",
+              "number": 7,
+              "name": "Yarden Shua",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "76'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "johnbosco-kalu",
+              "number": 9,
+              "name": "Johnbosco Kalu",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            }
+          ],
+          "substitutes": [
+            {
+              "id": "amit-korenfein",
+              "number": 1,
+              "name": "Amit Korenfein",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "uri-dahan",
+              "number": 20,
+              "name": "Uri Dahan",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "grigori-morozov",
+              "number": 18,
+              "name": "Grigori Morozov",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "timothy-muzie",
+              "number": 11,
+              "name": "Timothy Muzie",
+              "sourceEvents": {
+                "goals": "80'",
+                "exchange": "62'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "ailson-tavares",
+              "number": 42,
+              "name": "Aílson Tavares",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "87'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "dor-micha",
+              "number": 15,
+              "name": "Dor Micha",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "76'",
+                "cards": ""
+              }
+            },
+            {
+              "id": "yan-shikot",
+              "number": 21,
+              "name": "Yan Shikot",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "dor-hugi",
+              "number": 24,
+              "name": "Dor Hugi",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "",
+                "cards": ""
+              }
+            },
+            {
+              "id": "hasond-gonzales",
+              "number": 99,
+              "name": "Hasond Gonzales",
+              "sourceEvents": {
+                "goals": "",
+                "exchange": "76'",
+                "cards": ""
+              }
+            }
+          ]
         }
       },
-      "substitutions": [],
+      "substitutions": [
+        {
+          "minute": "62",
+          "sortOrder": 20,
+          "team": "opponent",
+          "playerIn": {
+            "id": "timothy-muzie",
+            "name": "Timothy Muzie"
+          },
+          "playerOut": {
+            "id": "ziv-ben-shimol",
+            "name": "Ziv Ben Shimol"
+          }
+        },
+        {
+          "minute": "66",
+          "sortOrder": 30,
+          "team": "maccabi",
+          "playerIn": {
+            "id": "kervin-andrade",
+            "name": "Kervin Andrade"
+          },
+          "playerOut": {
+            "id": "emir-sahiti",
+            "name": "Emir Sahiti"
+          }
+        },
+        {
+          "minute": "66",
+          "sortOrder": 40,
+          "team": "maccabi",
+          "playerIn": {
+            "id": "noam-ben-harush",
+            "name": "Noam Ben Harush"
+          },
+          "playerOut": {
+            "id": "sagiv-jehezkel",
+            "name": "Sagiv Jehezkel"
+          }
+        },
+        {
+          "minute": "66",
+          "sortOrder": 50,
+          "team": "maccabi",
+          "playerIn": {
+            "id": "elad-madmon",
+            "name": "Elad Madmon"
+          },
+          "playerOut": {
+            "id": "saied-abu-farchi",
+            "name": "Saied Abu Farchi"
+          }
+        },
+        {
+          "minute": "76",
+          "sortOrder": 60,
+          "team": "opponent",
+          "playerIn": {
+            "id": "dor-micha",
+            "name": "Dor Micha"
+          },
+          "playerOut": {
+            "id": "yarin-levi",
+            "name": "Yarin Levi"
+          }
+        },
+        {
+          "minute": "76",
+          "sortOrder": 70,
+          "team": "opponent",
+          "playerIn": {
+            "id": "hasond-gonzales",
+            "name": "Hasond Gonzales"
+          },
+          "playerOut": {
+            "id": "yarden-shua",
+            "name": "Yarden Shua"
+          }
+        },
+        {
+          "minute": "84",
+          "sortOrder": 90,
+          "team": "maccabi",
+          "playerIn": {
+            "id": "itamar-noy",
+            "name": "Itamar Noy"
+          },
+          "playerOut": {
+            "id": "ido-shahar",
+            "name": "Ido Shahar"
+          }
+        },
+        {
+          "minute": "84",
+          "sortOrder": 100,
+          "team": "maccabi",
+          "playerIn": {
+            "id": "itay-ben-hemo",
+            "name": "Itay Ben Hemo"
+          },
+          "playerOut": {
+            "id": "mohamed-ali-camara",
+            "name": "Mohamed Ali Camara"
+          }
+        },
+        {
+          "minute": "87",
+          "sortOrder": 110,
+          "team": "opponent",
+          "playerIn": {
+            "id": "ailson-tavares",
+            "name": "Aílson Tavares"
+          },
+          "playerOut": {
+            "id": "omer-azili",
+            "name": "Omer Azili"
+          }
+        }
+      ],
       "dismissals": [],
-      "goals": [],
+      "goals": [
+        {
+          "minute": "51",
+          "sortOrder": 0,
+          "team": "maccabi",
+          "scorer": "Dor Peretz",
+          "ownGoal": false
+        },
+        {
+          "minute": "60",
+          "sortOrder": 10,
+          "team": "opponent",
+          "scorer": "Omer Azili",
+          "ownGoal": false
+        },
+        {
+          "minute": "80",
+          "sortOrder": 80,
+          "team": "opponent",
+          "scorer": "Timothy Muzie",
+          "ownGoal": false
+        }
+      ],
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-6/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.248Z",
         "ifaUrl": "",
-        "verificationStatus": "not-reviewed"
+        "verificationStatus": "not-reviewed",
+        "detailsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-6/",
+        "lineupsUrl": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-6/teams/"
       },
-      "notes": [
-        "Future/unplayed match imported from fixtures page."
-      ],
+      "notes": [],
       "dataQuality": {
-        "completeForCalculation": false,
+        "completeForCalculation": true,
         "errors": [],
         "warnings": [
-          "Match is not finished, so it is excluded from plus/minus calculations."
+          "Source stores stoppage-time events as base minutes only, e.g. 45 or 90."
         ]
       }
     },
@@ -19498,7 +20042,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-7/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed"
       },
@@ -19519,7 +20063,7 @@
       "competition": "Israeli Premier League",
       "round": 36,
       "date": "2026-05-23",
-      "time": "",
+      "time": "18:00",
       "stadium": "HaMoshava",
       "status": "scheduled",
       "homeAway": "away",
@@ -19551,7 +20095,7 @@
       "source": {
         "name": "Maccabi Tel Aviv official website",
         "url": "https://www.maccabi-tlv.co.il/en/match/2026-05-maccabi-tel-aviv-8/",
-        "importedAt": "2026-05-14T22:06:59.677Z",
+        "importedAt": "2026-05-17T18:28:17.249Z",
         "ifaUrl": "",
         "verificationStatus": "not-reviewed"
       },

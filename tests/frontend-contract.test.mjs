@@ -33,7 +33,13 @@ test("players table can be filtered by minimum played minutes", () => {
   assert.match(appJs, /minMinutes:\s*""/);
   assert.match(appJs, /\["minMinutes",\s*"#minMinutesFilter"\]/);
   assert.match(appJs, /function parseMinMinutesFilter\(\)/);
-  assert.match(appJs, /Number\(player\.minutes \|\| 0\) < minMinutes/);
+  assert.match(appJs, /function buildFilteredPlayerStats\(player\)/);
+  assert.match(appJs, /function matchPassesAnalysisScope\(match\)/);
+  assert.match(appJs, /function matchWasStarted\(match\)/);
+  assert.match(appJs, /interval\.role === "starter"/);
+  assert.match(appJs, /function matchWasSubstitute\(match\)/);
+  assert.match(appJs, /interval\.role === "substitute"/);
+  assert.match(appJs, /המספרים מחושבים לפי הסינון הנוכחי/);
   assert.match(appJs, /לפחות \$\{minMinutes\} דקות משחק/);
 });
 

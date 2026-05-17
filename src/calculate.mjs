@@ -146,6 +146,7 @@ export function calculateMatch(match) {
       opponent: match.opponent,
       homeAway: match.homeAway,
       result: match.result,
+      maccabiWon: match.maccabiWon,
       started: stat.started,
       minutes: stat.minutes,
       plusMinus: stat.plusMinus,

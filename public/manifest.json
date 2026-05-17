@@ -9,8 +9,8 @@
   "dir": "rtl",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#031a3d",
-  "theme_color": "#034ea2",
+  "background_color": "#dfe7ec",
+  "theme_color": "#0b2031",
   "icons": [
     {
       "src": "/icons/maccabicheck-icon.svg",
